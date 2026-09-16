@@ -452,7 +452,7 @@ export class AttentionStore {
     ]);
     cards.sort((a, b) => a.createdAt.localeCompare(b.createdAt));
     const emailRunIds = new Set(cards.flatMap((card) => card.sourceRunIds ?? []));
-    const emailSnapshots = new Map(await Promise.all(runs.filter((run) => emailRunIds.has(run.id)).map(async (run) => {
+    const emailSnapshots = new Map<string, readonly unknown[]>(await Promise.all(runs.filter((run) => emailRunIds.has(run.id)).map(async (run) => {
       try {
         const snapshots = await this.readSourceSnapshots(run);
         return [run.id, snapshots.map((snapshot) => snapshot.value)] as const;
