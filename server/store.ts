@@ -457,7 +457,6 @@ export class AttentionStore {
         const snapshots = await this.readSourceSnapshots(run);
         return [run.id, snapshots.map((snapshot) => snapshot.value)] as const;
       } catch {
-        console.warn(`Could not load email dates for source run ${run.id}.`);
         return [run.id, []] as const;
       }
     })));
